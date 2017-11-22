@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="arkanoidTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4t3-DN-2KW">
+                                <rect key="frame" x="145" y="296" width="85" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="0jZ-Za-IZP"/>
+                                    <constraint firstAttribute="width" constant="85" id="lW9-is-Qo7"/>
+                                </constraints>
+                                <state key="normal" image="reloadButton"/>
+                                <connections>
+                                    <action selector="refreshGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="c4g-Vd-sSS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4t3-DN-2KW" firstAttribute="centerY" secondItem="4qk-I5-YsI" secondAttribute="centerY" constant="-10" id="LXn-z7-v19"/>
+                            <constraint firstItem="4t3-DN-2KW" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="R89-ri-QgD"/>
+                            <constraint firstItem="4t3-DN-2KW" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="gei-kG-N61"/>
+                            <constraint firstItem="4t3-DN-2KW" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="lkl-Zb-6L1"/>
+                            <constraint firstItem="4t3-DN-2KW" firstAttribute="centerY" secondItem="4qk-I5-YsI" secondAttribute="centerY" id="mug-n4-cfz"/>
+                            <constraint firstItem="4t3-DN-2KW" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="ris-D4-bL0"/>
+                            <constraint firstItem="4t3-DN-2KW" firstAttribute="centerY" secondItem="4qk-I5-YsI" secondAttribute="centerY" id="sKh-jO-3Pg"/>
+                            <constraint firstItem="4t3-DN-2KW" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="vbD-ZT-jdv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
+                    </view>
+                    <connections>
+                        <outlet property="reloadGameButton" destination="4t3-DN-2KW" id="Y9s-Op-Den"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="reloadButton" width="75" height="75"/>
+    </resources>
+</document>
