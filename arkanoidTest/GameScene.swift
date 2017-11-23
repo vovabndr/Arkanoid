@@ -121,18 +121,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 width: brickNode[i].size.width,
                 height: brickNode[i].size.height))
             
-//            brickNode[i].physicsBody?.isDynamic = false
-//            brickNode[i].physicsBody?.allowsRotation = false
-//            brickNode[i].physicsBody?.pinned = false
-//            brickNode[i].physicsBody?.affectedByGravity = false
-//            brickNode[i].physicsBody?.mass = 0.01
-//            brickNode[i].physicsBody?.friction = 0.2
-//            brickNode[i].physicsBody?.restitution = 0.2
-//            brickNode[i].physicsBody?.linearDamping = 0.1
-//            brickNode[i].physicsBody?.angularDamping = 0.1
-//            brickNode[i].physicsBody?.categoryBitMask = 2
-//            brickNode[i].physicsBody?.collisionBitMask = 1
-//            brickNode[i].physicsBody?.contactTestBitMask = 1
+            brickNode[i].physicsBody?.isDynamic = false
+            brickNode[i].physicsBody?.allowsRotation = false
+            brickNode[i].physicsBody?.pinned = false
+            brickNode[i].physicsBody?.affectedByGravity = false
+            brickNode[i].physicsBody?.mass = 0.01
+            brickNode[i].physicsBody?.friction = 0.2
+            brickNode[i].physicsBody?.restitution = 0.2
+            brickNode[i].physicsBody?.linearDamping = 0.1
+            brickNode[i].physicsBody?.angularDamping = 0.1
+            brickNode[i].physicsBody?.categoryBitMask = 2
+            brickNode[i].physicsBody?.collisionBitMask = 1
+            brickNode[i].physicsBody?.contactTestBitMask = 1
             
             if (i<5 && i>0){brickNode[i].position = CGPoint(x:Int(pos.x)+130*i,y:Int(pos.y))
                 brickNode[i].texture = brickTexture[0]}

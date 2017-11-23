@@ -15,25 +15,34 @@ class GameViewController: UIViewController {
     var scene = GameScene(size: CGSize(width: 750, height: 1334) )
   
     @IBOutlet weak var reloadGameButton: UIButton!
+    @IBOutlet weak var loadingView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scene.gameViewControllerBridge = self
         
         reloadGameButton.isHidden = true
+        reloadGameButton.frame = CGRect(x: Int(self.view.frame.midX - 85.0/2), y: 400, width: 85, height: 75)
         
         let view = self.view as! SKView
         scene.scaleMode = .aspectFill
         
         view.ignoresSiblingOrder = true
-        view.presentScene(scene)
         
-    }
-    
-    
-    
-    func pr(){
-    print("hello")
+        
+        
+        loadingView.isHidden = false
+        
+        let when = DispatchTime.now() + 3
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.loadingView.isHidden = true
+            view.presentScene(self.scene)
+        }
+        
+        
+        
+        
+        
     }
     
     @IBAction func refreshGameButton(_ sender: UIButton) {

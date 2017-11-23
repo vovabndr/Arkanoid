@@ -26,10 +26,9 @@ extension GameScene{
         if bodyA?.physicsBody?.categoryBitMask == phyBodies.botBodyMask &&
             bodyB?.physicsBody?.categoryBitMask == phyBodies.ballPhBodMask {
             lose()
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-//                self.scene?.isPaused = true
+
                 self.gameViewControllerBridge?.reloadGameButton.isHidden = false
-//            })
+
         }
         
         

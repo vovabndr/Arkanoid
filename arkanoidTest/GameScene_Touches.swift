@@ -14,14 +14,27 @@ extension GameScene{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
             let touchLoc = touch.location(in: self)
-            paddleNode.position.x = touchLoc.x
+           
+            if (touchLoc.x > self.frame.maxX - paddleNode.size.width/2){
+                paddleNode.position.x = self.frame.maxX - paddleNode.size.width/2
+            }else if (touchLoc.x < self.frame.minX + paddleNode.size.width/2){
+                paddleNode.position.x = self.frame.minX + paddleNode.size.width/2
+            } else {
+                paddleNode.position.x = touchLoc.x
+            }
         }
-        
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
             let touchLoc = touch.location(in: self)
-            paddleNode.position.x = touchLoc.x
+           // paddleNode.position.x = touchLoc.x
+            if (touchLoc.x > self.frame.maxX - paddleNode.size.width/2){
+                paddleNode.position.x = self.frame.maxX - paddleNode.size.width/2
+            }else if (touchLoc.x < self.frame.minX + paddleNode.size.width/2){
+                paddleNode.position.x = self.frame.minX + paddleNode.size.width/2
+            } else {
+                paddleNode.position.x = touchLoc.x
+            }
         }
     }
 }
