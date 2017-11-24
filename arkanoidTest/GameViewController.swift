@@ -33,7 +33,7 @@ class GameViewController: UIViewController {
         
         loadingView.isHidden = false
         
-        let when = DispatchTime.now() + 3
+        let when = DispatchTime.now() + 1
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.loadingView.isHidden = true
             view.presentScene(self.scene)
@@ -46,14 +46,13 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func refreshGameButton(_ sender: UIButton) {
-        
         scene.reloadGame()
         self.reloadGameButton.isHidden = true
     }
     
     
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

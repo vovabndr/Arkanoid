@@ -26,9 +26,8 @@ extension GameScene{
         if bodyA?.physicsBody?.categoryBitMask == phyBodies.botBodyMask &&
             bodyB?.physicsBody?.categoryBitMask == phyBodies.ballPhBodMask {
             lose()
-
-                self.gameViewControllerBridge?.reloadGameButton.isHidden = false
-
+            livesScore -= 1
+//            lives()
         }
         
         

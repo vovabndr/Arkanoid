@@ -15,19 +15,27 @@ extension GameScene{
         for touch in touches{
             let touchLoc = touch.location(in: self)
            
+            if loseStatus == false{
             if (touchLoc.x > self.frame.maxX - paddleNode.size.width/2){
                 paddleNode.position.x = self.frame.maxX - paddleNode.size.width/2
             }else if (touchLoc.x < self.frame.minX + paddleNode.size.width/2){
                 paddleNode.position.x = self.frame.minX + paddleNode.size.width/2
             } else {
                 paddleNode.position.x = touchLoc.x
+                
+                }
             }
         }
+//            start()
+//        if startStatus == false{
+//            stop()}
+    
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
             let touchLoc = touch.location(in: self)
-           // paddleNode.position.x = touchLoc.x
+
+            if loseStatus == false{
             if (touchLoc.x > self.frame.maxX - paddleNode.size.width/2){
                 paddleNode.position.x = self.frame.maxX - paddleNode.size.width/2
             }else if (touchLoc.x < self.frame.minX + paddleNode.size.width/2){
@@ -35,6 +43,9 @@ extension GameScene{
             } else {
                 paddleNode.position.x = touchLoc.x
             }
+            }
         }
+      
+        
     }
 }

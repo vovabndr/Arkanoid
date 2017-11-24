@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var ballNode = SKSpriteNode()
     let bot = SKSpriteNode()
     let top = SKSpriteNode()
+    var heart: [SKSpriteNode] = [];
 
     //Physic
     var border = SKPhysicsBody()
@@ -38,15 +39,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Variables
     var gameViewControllerBridge: GameViewController?
     
-    
-    
     var pos = CGPoint()
     var score = 0
+    var loseStatus = Bool()
+    var startStatus = Bool()
+    var livesScore: Int = 0
+    
     
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
         self.physicsWorld.contactDelegate = self
-       
         createObjects()
     }
     
@@ -54,10 +56,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createObjects(){
         createBorder()
-        createBall()
         createPaddle()
+        createBall()
         createBricks()
         brickScore()
+        loseStatus = false
+        livesScore = 2
+        lives()
     }
     
     
@@ -65,12 +70,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ballTexture = SKTexture(imageNamed: "ballBlue")
         ballNode = SKSpriteNode(texture: ballTexture)
         ballNode.position = CGPoint(x: self.size.width/2,y: 95)
+
         ballNode.size = CGSize(width: 50, height: 50)
         ballNode.color = .black
         addChild(ballNode)
         ballNode.physicsBody = SKPhysicsBody(circleOfRadius: max(ballNode.size.width / 2,
                                                                  ballNode.size.height / 2))
         ballNode.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 50))
+//            ballNode.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0))
+
         ballNode.physicsBody?.isDynamic = true
         ballNode.physicsBody?.allowsRotation = false
         ballNode.physicsBody?.pinned = false
@@ -153,14 +161,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func lose(){
+        self.gameViewControllerBridge?.reloadGameButton.isHidden = false
         label = SKLabelNode(text: "You are lose")
         label.position = CGPoint(x: 350, y: 600)
         label.fontSize = CGFloat(100)
         label.fontColor = .black
         self.addChild(label)
         ballNode.physicsBody?.isDynamic = false
-//        gameViewControllerBridge?.pr()
-        
+        ballNode.removeFromParent()
+        loseStatus = true 
         
     }
    
@@ -184,6 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         top.physicsBody?.isDynamic = false
         self.addChild(top)
     }
+    
     func brickScore(){ 
 
         labelScore.text = "Score: \(score)"
@@ -193,7 +203,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(labelScore)
     }
     
+    func lives(){
+        
+        for i in  0...livesScore{
+            heart.append(SKSpriteNode(imageNamed: "heart"))
+            heart[i].position = CGPoint(x: 350 + 50*i, y: 1310)
+            heart[i].size = CGSize(width: 40, height: 40)
+            self.addChild(heart[i])
+        }
+        
+    }
+  
+    func start(){
+//        ballNode.physicsBody?.applyImpulse(CGVector(dx: 100, dy: 100))
+//        ballNode.physicsBody?.velocity = CGVector(dx: 100, dy: 100)
+    }
     
+    func stop(){
+         ballNode.position.x =  paddleNode.position.x/2
+         ballNode.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0))
+    }
+  
     func reloadGame(){
         self.removeAllChildren()
         ballNode.speed = 1
