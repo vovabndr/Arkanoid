@@ -29,18 +29,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     //Physic
     var border = SKPhysicsBody()
-
-
     //Label
     var labelScore = SKLabelNode()
     var label = SKLabelNode()
-
-
     //Variables
     var gameViewControllerBridge: GameViewController?
-    
     var pos = CGPoint()
     var score = 0
+    var highScore = Int()
     var loseStatus = Bool()
     var startStatus = Bool()
     var livesScore: Int = 0
@@ -54,6 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     
+  
     func createObjects(){
         createBorder()
         createPaddle()
@@ -65,38 +62,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lives()
     }
     
-    
     func createBall(){
         ballTexture = SKTexture(imageNamed: "ballBlue")
         ballNode = SKSpriteNode(texture: ballTexture)
-        ballNode.position = CGPoint(x: self.size.width/2,y: 95)
+        ballNode.position = CGPoint(x: self.size.width/2,y: 195)
 
         ballNode.size = CGSize(width: 50, height: 50)
         ballNode.color = .black
         addChild(ballNode)
-        ballNode.physicsBody = SKPhysicsBody(circleOfRadius: max(ballNode.size.width / 2,
-                                                                 ballNode.size.height / 2))
-        ballNode.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 50))
-//            ballNode.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0))
+        
+  //      ballOn()
+  
 
-        ballNode.physicsBody?.isDynamic = true
-        ballNode.physicsBody?.allowsRotation = false
-        ballNode.physicsBody?.pinned = false
-        ballNode.physicsBody?.affectedByGravity = false
-        ballNode.physicsBody?.mass = 1.0
-        ballNode.physicsBody?.friction = 0.0
-        ballNode.physicsBody?.restitution = 1.0
-        ballNode.physicsBody?.linearDamping = 0.0
-        ballNode.physicsBody?.angularDamping = 0.0
-        ballNode.physicsBody?.categoryBitMask = phyBodies.ballPhBodMask
-        ballNode.physicsBody?.collisionBitMask = 2
-        ballNode.physicsBody?.contactTestBitMask = 2
     }
     
     func createPaddle(){
         paddleTexture = SKTexture(imageNamed: "paddleBlu")
         paddleNode = SKSpriteNode(texture: paddleTexture)
-        paddleNode.position = CGPoint(x: self.size.width/2, y: 50)
+        paddleNode.position = CGPoint(x: self.size.width/2, y: 150)
         paddleNode.size = CGSize(width: 200, height: 40)
         addChild(paddleNode)
         
@@ -145,16 +128,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if (i<5 && i>0){brickNode[i].position = CGPoint(x:Int(pos.x)+130*i,y:Int(pos.y))
                 brickNode[i].texture = brickTexture[0]}
             if (i<10 && i>4){
-                brickNode[i].position = CGPoint(x: Int(pos.x)+130*(i-5),y:Int(pos.y-80))
+                brickNode[i].position = CGPoint(x: Int(pos.x)+130*(i-5),y:Int(pos.y-70))
                 brickNode[i].texture = brickTexture[1]}
             if (i<15 && i>9){
-                brickNode[i].position = CGPoint(x: Int(pos.x)+130*(i-10),y:Int(pos.y-160))
+                brickNode[i].position = CGPoint(x: Int(pos.x)+130*(i-10),y:Int(pos.y-140))
                 brickNode[i].texture = brickTexture[2]}
             if (i<20 && i>14){
-                brickNode[i].position = CGPoint(x:Int(pos.x)+130*(i-15),y:Int(pos.y-240))
+                brickNode[i].position = CGPoint(x:Int(pos.x)+130*(i-15),y:Int(pos.y-210))
                 brickNode[i].texture = brickTexture[3]}
             if (i<25 && i>19){
-                brickNode[i].position = CGPoint(x:Int(pos.x)+130*(i-20),y:Int(pos.y-320))
+                brickNode[i].position = CGPoint(x:Int(pos.x)+130*(i-20),y:Int(pos.y-280))
                 brickNode[i].texture = brickTexture[4]}
             self.addChild(brickNode[i])
         }
@@ -162,6 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func lose(){
         self.gameViewControllerBridge?.reloadGameButton.isHidden = false
+        self.gameViewControllerBridge?.menuButton.isHidden = false
         label = SKLabelNode(text: "You are lose")
         label.position = CGPoint(x: 350, y: 600)
         label.fontSize = CGFloat(100)
@@ -187,7 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bot.physicsBody?.categoryBitMask = phyBodies.botBodyMask
         self.addChild(bot)
         
-        top.position = CGPoint(x: 0, y: 1260)
+        top.position = CGPoint(x: 0, y: 1280)
         
         top.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.maxX*2, height: 1))
         top.physicsBody?.isDynamic = false
@@ -208,27 +192,55 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for i in  0...livesScore{
             heart.append(SKSpriteNode(imageNamed: "heart"))
             heart[i].position = CGPoint(x: 350 + 50*i, y: 1310)
-            heart[i].size = CGSize(width: 40, height: 40)
+            heart[i].size = CGSize(width: 50, height: 50)
             self.addChild(heart[i])
         }
         
     }
+    
+    func removeHeasrt(){
+        for i in 0..<heart.count{
+        heart[i].removeFromParent()
+        }
+    }
   
-    func start(){
-//        ballNode.physicsBody?.applyImpulse(CGVector(dx: 100, dy: 100))
-//        ballNode.physicsBody?.velocity = CGVector(dx: 100, dy: 100)
+
+    func ballOn(){
+        ballNode.physicsBody = SKPhysicsBody(circleOfRadius: max(ballNode.size.width / 2,
+                                                                 ballNode.size.height / 2))
+        
+        ballNode.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 50))
+        ballNode.physicsBody?.isDynamic = true
+        ballNode.physicsBody?.allowsRotation = false
+        ballNode.physicsBody?.pinned = false
+        ballNode.physicsBody?.affectedByGravity = false
+        ballNode.physicsBody?.mass = 1.0
+        ballNode.physicsBody?.friction = 0.0
+        ballNode.physicsBody?.restitution = 1.0
+        ballNode.physicsBody?.linearDamping = 0.0
+        ballNode.physicsBody?.angularDamping = 0.0
+        ballNode.physicsBody?.categoryBitMask = phyBodies.ballPhBodMask
+        ballNode.physicsBody?.collisionBitMask = 2
+        ballNode.physicsBody?.contactTestBitMask = 2
     }
     
-    func stop(){
-         ballNode.position.x =  paddleNode.position.x/2
-         ballNode.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0))
+    func ballOff(){
+        ballNode.physicsBody = nil
+        ballNode.position = CGPoint(x: paddleNode.position.x, y: 195)
+        livesScore -= 1 
     }
+    
+    
   
+    
     func reloadGame(){
+        self.gameViewControllerBridge?.menuButton.isHidden = true
         self.removeAllChildren()
-        ballNode.speed = 1
-        self.speed = 1
-        
+      //  ballNode.speed = 1
+     //   self.speed = 1
+    }
+    
+    func startNewGame(){
         createObjects()
     }
 

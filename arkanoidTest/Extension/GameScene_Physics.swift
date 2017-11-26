@@ -21,15 +21,23 @@ extension GameScene{
             labelScore.text = "Score: \(score)"
         }
         
+//        UserDefaults.standard.set(highScore, forKey: "highScore")
+//        UserDefaults.standard.value(forKey: "highScore")
+//        UserDefaults.standard.object(forKey: String)
         
 
         if bodyA?.physicsBody?.categoryBitMask == phyBodies.botBodyMask &&
             bodyB?.physicsBody?.categoryBitMask == phyBodies.ballPhBodMask {
-            lose()
-            livesScore -= 1
-//            lives()
+            ballOff()
+            removeHeasrt()
+            if livesScore >= 0{
+            lives()
+            }
+            
+            if livesScore == -1{
+                lose()
+                
+            }
         }
-        
-        
     }
 }
