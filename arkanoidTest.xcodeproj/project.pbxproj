@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		312649561FCB0A570008A097 /* mainmenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 312649551FCB0A570008A097 /* mainmenuButton.png */; };
+		312649581FCC5BD90008A097 /* GamwScene_creatingLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312649571FCC5BD90008A097 /* GamwScene_creatingLevels.swift */; };
+		3126495D1FCC9ABA0008A097 /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3126495C1FCC9ABA0008A097 /* star1.png */; };
+		3126495F1FCC9AD40008A097 /* star2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3126495E1FCC9AD40008A097 /* star2.png */; };
+		312649611FCCB28A0008A097 /* pause-button-orange-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = 312649601FCCB28A0008A097 /* pause-button-orange-hi.png */; };
+		312649631FCCB5070008A097 /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 312649621FCCB5070008A097 /* playButton.png */; };
 		3157AEBB1FC32BC700E94DE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3157AEBA1FC32BC700E94DE2 /* AppDelegate.swift */; };
 		3157AEBD1FC32BC700E94DE2 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3157AEBC1FC32BC700E94DE2 /* GameScene.sks */; };
 		3157AEC11FC32BC700E94DE2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3157AEC01FC32BC700E94DE2 /* GameScene.swift */; };
@@ -40,6 +45,11 @@
 
 /* Begin PBXFileReference section */
 		312649551FCB0A570008A097 /* mainmenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainmenuButton.png; sourceTree = "<group>"; };
+		312649571FCC5BD90008A097 /* GamwScene_creatingLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamwScene_creatingLevels.swift; sourceTree = "<group>"; };
+		3126495C1FCC9ABA0008A097 /* star1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star1.png; path = ../../../../../../../Downloads/star1.png; sourceTree = "<group>"; };
+		3126495E1FCC9AD40008A097 /* star2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star2.png; sourceTree = "<group>"; };
+		312649601FCCB28A0008A097 /* pause-button-orange-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-button-orange-hi.png"; sourceTree = "<group>"; };
+		312649621FCCB5070008A097 /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
 		3157AEB71FC32BC700E94DE2 /* arkanoidTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arkanoidTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3157AEBA1FC32BC700E94DE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3157AEBC1FC32BC700E94DE2 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -83,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		312649591FCC98AC0008A097 /* stars */ = {
+			isa = PBXGroup;
+			children = (
+				3126495C1FCC9ABA0008A097 /* star1.png */,
+				3126495E1FCC9AD40008A097 /* star2.png */,
+			);
+			path = stars;
+			sourceTree = "<group>";
+		};
 		3157AEAE1FC32BC700E94DE2 = {
 			isa = PBXGroup;
 			children = (
@@ -140,10 +159,13 @@
 		31FB3AD41FC9C38800FCA7DA /* Button Pics */ = {
 			isa = PBXGroup;
 			children = (
+				312649591FCC98AC0008A097 /* stars */,
 				31FB3AD51FC9C3D100FCA7DA /* playGameButton.png */,
+				312649601FCCB28A0008A097 /* pause-button-orange-hi.png */,
 				31FB3AD61FC9C3D100FCA7DA /* reloadButton.png */,
 				312649551FCB0A570008A097 /* mainmenuButton.png */,
 				31FB3AF91FCAEA2D00FCA7DA /* back.png */,
+				312649621FCCB5070008A097 /* playButton.png */,
 			);
 			path = "Button Pics";
 			sourceTree = "<group>";
@@ -153,6 +175,7 @@
 			children = (
 				3157AED21FC49D2E00E94DE2 /* GameScene_Touches.swift */,
 				3157AED41FC49D6800E94DE2 /* GameScene_Physics.swift */,
+				312649571FCC5BD90008A097 /* GamwScene_creatingLevels.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -268,6 +291,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				31FB3AF61FCA2D2700FCA7DA /* heart.png in Resources */,
+				3126495F1FCC9AD40008A097 /* star2.png in Resources */,
+				312649631FCCB5070008A097 /* playButton.png in Resources */,
 				31FB3ACF1FC9B9D000FCA7DA /* button_press.wav in Resources */,
 				31FB3AFA1FCAEA2D00FCA7DA /* back.png in Resources */,
 				31FB3AE21FC9E1E100FCA7DA /* backGround.PNG in Resources */,
@@ -277,7 +302,9 @@
 				31FB3AD81FC9C3D100FCA7DA /* reloadButton.png in Resources */,
 				31FB3AEB1FCA2CE200FCA7DA /* rectYellow.png in Resources */,
 				312649561FCB0A570008A097 /* mainmenuButton.png in Resources */,
+				312649611FCCB28A0008A097 /* pause-button-orange-hi.png in Resources */,
 				3157AEBD1FC32BC700E94DE2 /* GameScene.sks in Resources */,
+				3126495D1FCC9ABA0008A097 /* star1.png in Resources */,
 				31FB3AF31FCA2D1300FCA7DA /* ballBlue.png in Resources */,
 				31FB3AEF1FCA2CE200FCA7DA /* rectPurp.png in Resources */,
 				31FB3AD71FC9C3D100FCA7DA /* playGameButton.png in Resources */,
@@ -300,6 +327,7 @@
 				31FB3AD21FC9BF4300FCA7DA /* Sound.swift in Sources */,
 				31FB3ADA1FC9CCA300FCA7DA /* SwiftSpinner.swift in Sources */,
 				3157AED31FC49D2E00E94DE2 /* GameScene_Touches.swift in Sources */,
+				312649581FCC5BD90008A097 /* GamwScene_creatingLevels.swift in Sources */,
 				3157AED51FC49D6800E94DE2 /* GameScene_Physics.swift in Sources */,
 				31FB3ACD1FC9A8D600FCA7DA /* MainViewController .swift in Sources */,
 				31FB3AE41FC9F17400FCA7DA /* LevelMenuViewController.swift in Sources */,

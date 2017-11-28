@@ -17,8 +17,15 @@ extension GameScene{
         if bodyA?.physicsBody?.categoryBitMask == phyBodies.brickPhBodMask &&
             bodyB?.physicsBody?.categoryBitMask == phyBodies.ballPhBodMask {
             bodyA?.removeFromParent()
-            score += 1
-            labelScore.text = "Score: \(score)"
+            
+            check -= 1
+            if check <= 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.win()
+                }
+            }
+            
+
         }
         
 //        UserDefaults.standard.set(highScore, forKey: "highScore")

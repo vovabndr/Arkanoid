@@ -48,8 +48,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR2-GI-9mk">
-                                <rect key="frame" x="126" y="134" width="122" height="98"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR2-GI-9mk">
+                                <rect key="frame" x="112" y="120" width="150" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
@@ -75,8 +75,8 @@
                                     <action selector="backButton:" destination="IhC-yS-AYL" eventType="touchUpInside" id="y9G-6s-ZVi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MwX-YH-6xN">
-                                <rect key="frame" x="126" y="284" width="122" height="98"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MwX-YH-6xN">
+                                <rect key="frame" x="112" y="250" width="150" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
@@ -85,8 +85,18 @@
                                     <action selector="levelChoosingButton:" destination="IhC-yS-AYL" eventType="touchUpInside" id="Vx2-N2-T8A"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uub-kS-6vd">
-                                <rect key="frame" x="126" y="434" width="122" height="98"/>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6g-l1-JDe">
+                                <rect key="frame" x="112" y="510" width="150" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                <state key="normal" title="4"/>
+                                <connections>
+                                    <action selector="levelChoosingButton:" destination="IhC-yS-AYL" eventType="touchUpInside" id="SFH-8o-GOD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uub-kS-6vd">
+                                <rect key="frame" x="112" y="380" width="150" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
@@ -99,10 +109,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="bhK-SW-dui"/>
                     </view>
+                    <connections>
+                        <outletCollection property="lvlButtons" destination="HR2-GI-9mk" collectionClass="NSMutableArray" id="Q45-nn-Z4u"/>
+                        <outletCollection property="lvlButtons" destination="MwX-YH-6xN" collectionClass="NSMutableArray" id="la5-b9-RTv"/>
+                        <outletCollection property="lvlButtons" destination="uub-kS-6vd" collectionClass="NSMutableArray" id="JjB-uZ-o7G"/>
+                        <outletCollection property="lvlButtons" destination="J6g-l1-JDe" collectionClass="NSMutableArray" id="Kj1-Nh-TXg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQc-8H-iqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="380" y="124"/>
+            <point key="canvasLocation" x="380" y="123.68815592203899"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -126,6 +142,14 @@
                                 <state key="normal" backgroundImage="mainmenuButton.png"/>
                                 <connections>
                                     <action selector="menuButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Yjc-pu-p8n"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gmq-rM-MRw">
+                                <rect key="frame" x="16" y="4" width="40" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="pause-button-orange-hi.png"/>
+                                <connections>
+                                    <action selector="pauseButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="2C5-Kr-zj7"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJp-7p-hov">
@@ -173,12 +197,13 @@
                     <connections>
                         <outlet property="loadingView" destination="NJp-7p-hov" id="f8e-Tr-Hai"/>
                         <outlet property="menuButton" destination="gZJ-DZ-GFq" id="MME-RB-xCq"/>
+                        <outlet property="pauseButton" destination="Gmq-rM-MRw" id="pKa-Tz-qii"/>
                         <outlet property="reloadGameButton" destination="4t3-DN-2KW" id="Y9s-Op-Den"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1062" y="124"/>
+            <point key="canvasLocation" x="1061.5999999999999" y="123.68815592203899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Apl-ZF-bWo">
@@ -203,6 +228,7 @@
         <image name="backGround.PNG" width="750" height="1334"/>
         <image name="image.jpeg" width="1080" height="1500"/>
         <image name="mainmenuButton.png" width="75" height="75"/>
+        <image name="pause-button-orange-hi.png" width="600" height="600"/>
         <image name="playGameButton.png" width="198" height="58"/>
         <image name="reloadButton.png" width="75" height="75"/>
     </resources>

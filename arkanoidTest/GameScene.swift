@@ -40,12 +40,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var loseStatus = Bool()
     var startStatus = Bool()
     var livesScore: Int = 0
+    var check = 0
+//var result: Any
+    
+    var selectedLevel: levelChoosing!
     
     
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
         self.physicsWorld.contactDelegate = self
         createObjects()
+        UserDefaults.standard.set(true, forKey: "0")
     }
     
     
@@ -56,10 +61,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPaddle()
         createBall()
         createBricks()
-        brickScore()
         loseStatus = false
         livesScore = 2
         lives()
+        
+        self.gameViewControllerBridge?.pauseButton.isHidden = false
+        
     }
     
     func createBall(){
@@ -71,9 +78,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ballNode.color = .black
         addChild(ballNode)
         
-  //      ballOn()
-  
-
     }
     
     func createPaddle(){
@@ -97,51 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         paddleNode.physicsBody?.angularDamping = 0.1
     }
     
-    func createBricks(){
-        brickTexture = [0:SKTexture(imageNamed: "rectYellow"),
-                        1:SKTexture(imageNamed: "rectRed"),
-                        2:SKTexture(imageNamed: "rectPurp"),
-                        3:SKTexture(imageNamed: "rectGreen"),
-                        4:SKTexture(imageNamed: "rectBlue")]
-         pos = CGPoint(x:120,y:1150)
-        for i in 0...24 {
-            brickNode.append(SKSpriteNode(texture: brickTexture[i%5]))
-            brickNode[i].position = pos
-            brickNode[i].size = CGSize(width: 120, height: 60)
-            brickNode[i].physicsBody = SKPhysicsBody(rectangleOf:CGSize(
-                width: brickNode[i].size.width,
-                height: brickNode[i].size.height))
-            
-            brickNode[i].physicsBody?.isDynamic = false
-            brickNode[i].physicsBody?.allowsRotation = false
-            brickNode[i].physicsBody?.pinned = false
-            brickNode[i].physicsBody?.affectedByGravity = false
-            brickNode[i].physicsBody?.mass = 0.01
-            brickNode[i].physicsBody?.friction = 0.2
-            brickNode[i].physicsBody?.restitution = 0.2
-            brickNode[i].physicsBody?.linearDamping = 0.1
-            brickNode[i].physicsBody?.angularDamping = 0.1
-            brickNode[i].physicsBody?.categoryBitMask = 2
-            brickNode[i].physicsBody?.collisionBitMask = 1
-            brickNode[i].physicsBody?.contactTestBitMask = 1
-            
-            if (i<5 && i>0){brickNode[i].position = CGPoint(x:Int(pos.x)+130*i,y:Int(pos.y))
-                brickNode[i].texture = brickTexture[0]}
-            if (i<10 && i>4){
-                brickNode[i].position = CGPoint(x: Int(pos.x)+130*(i-5),y:Int(pos.y-70))
-                brickNode[i].texture = brickTexture[1]}
-            if (i<15 && i>9){
-                brickNode[i].position = CGPoint(x: Int(pos.x)+130*(i-10),y:Int(pos.y-140))
-                brickNode[i].texture = brickTexture[2]}
-            if (i<20 && i>14){
-                brickNode[i].position = CGPoint(x:Int(pos.x)+130*(i-15),y:Int(pos.y-210))
-                brickNode[i].texture = brickTexture[3]}
-            if (i<25 && i>19){
-                brickNode[i].position = CGPoint(x:Int(pos.x)+130*(i-20),y:Int(pos.y-280))
-                brickNode[i].texture = brickTexture[4]}
-            self.addChild(brickNode[i])
-        }
-    }
+   
 
     func lose(){
         self.gameViewControllerBridge?.reloadGameButton.isHidden = false
@@ -156,6 +116,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         loseStatus = true 
         
     }
+    
+    func win(){
+        self.gameViewControllerBridge?.reloadGameButton.isHidden = false
+        self.gameViewControllerBridge?.menuButton.isHidden = false
+        label = SKLabelNode(text: "You win")
+        label.position = CGPoint(x: 350, y: 600)
+        label.fontSize = CGFloat(100)
+        label.fontColor = .black
+        self.addChild(label)
+        ballNode.physicsBody?.isDynamic = false
+        ballNode.removeFromParent()
+        loseStatus = true
+        
+        if UserDefaults.standard.object(forKey: String(selectedLevel!.rawValue+1) ) == nil{
+              UserDefaults.standard.set(true, forKey: String(selectedLevel!.rawValue+1))
+        }
+        
+        
+        if (UserDefaults.standard.object(forKey: String(selectedLevel!.rawValue) + "h"  ) == nil ){
+            UserDefaults.standard.set(livesScore, forKey: String(selectedLevel!.rawValue) + "h")
+        }
+        
+        
+        if (UserDefaults.standard.object(forKey: String(selectedLevel!.rawValue) + "h"  ) != nil ){
+            
+            Model.sharedInstance.curr = UserDefaults.standard.value(forKey: String(selectedLevel!.rawValue) + "h") as! Int
+            
+            if Model.sharedInstance.curr < livesScore{
+                UserDefaults.standard.set(livesScore, forKey: String(selectedLevel!.rawValue) + "h")}
+        }
+     
+        
+        
+    }
+    
+
+        //        UserDefaults.standard.set(highScore, forKey: "highScore")
+        //        UserDefaults.standard.value(forKey: "highScore")
+        //        UserDefaults.standard.object(forKey: String)
+  
    
     
     func createBorder(){
@@ -171,28 +171,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bot.physicsBody?.categoryBitMask = phyBodies.botBodyMask
         self.addChild(bot)
         
-        top.position = CGPoint(x: 0, y: 1280)
+        top.position = CGPoint(x: 0, y: 1250)
         
         top.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.maxX*2, height: 1))
         top.physicsBody?.isDynamic = false
         self.addChild(top)
     }
     
-    func brickScore(){ 
 
-        labelScore.text = "Score: \(score)"
-        labelScore.position = CGPoint(x: 650, y: 1300)
-        labelScore.fontSize = CGFloat(40)
-        labelScore.fontColor = .black
-        self.addChild(labelScore)
-    }
     
     func lives(){
         
         for i in  0...livesScore{
             heart.append(SKSpriteNode(imageNamed: "heart"))
-            heart[i].position = CGPoint(x: 350 + 50*i, y: 1310)
-            heart[i].size = CGSize(width: 50, height: 50)
+            heart[i].position = CGPoint(x: 520 + 70*i, y: 1290)
+            heart[i].size = CGSize(width: 60, height: 60)
             self.addChild(heart[i])
         }
         
@@ -231,14 +224,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-  
-    
     func reloadGame(){
         self.gameViewControllerBridge?.menuButton.isHidden = true
         self.removeAllChildren()
-      //  ballNode.speed = 1
-     //   self.speed = 1
+        scene?.isPaused = false
     }
+    
     
     func startNewGame(){
         createObjects()

@@ -15,11 +15,12 @@ extension GameScene{
         for touch in touches{
             
             let touchLoc = touch.location(in: self)
-           
+            if (touchLoc.y<1150){
+
             if ballNode.physicsBody == nil{
                 ballOn()}
-            
-            if loseStatus == false{
+                if (self.scene?.isPaused == false){
+            if (loseStatus == false  ){
             if (touchLoc.x > self.frame.maxX - paddleNode.size.width/2){
                 paddleNode.position.x = self.frame.maxX - paddleNode.size.width/2
             }else if (touchLoc.x < self.frame.minX + paddleNode.size.width/2){
@@ -28,6 +29,10 @@ extension GameScene{
                 paddleNode.position.x = touchLoc.x
                 
                 }
+                }
+                    
+                }
+                
             }
        
             
@@ -37,9 +42,14 @@ extension GameScene{
         for touch in touches{
             let touchLoc = touch.location(in: self)
 
+            
+
+            if (touchLoc.y<1150){
+
             if ballNode.physicsBody == nil{
                 ballOn()}
-            if loseStatus == false{
+                if (self.scene?.isPaused == false){
+            if (loseStatus == false  ){
             if (touchLoc.x > self.frame.maxX - paddleNode.size.width/2){
                 paddleNode.position.x = self.frame.maxX - paddleNode.size.width/2
             }else if (touchLoc.x < self.frame.minX + paddleNode.size.width/2){
@@ -47,6 +57,8 @@ extension GameScene{
             } else {
                 paddleNode.position.x = touchLoc.x}
             }
+            }
+        }
         }
     }
 }
