@@ -68,21 +68,31 @@ class levelMenuViewController: UIViewController {
             imageView.append(UIImageView(frame: CGRect(x: Int(sender.frame.minX) + 5 + 50*i,
                                                        y: Int(sender.frame.midY) - 5 , width: 40, height: 40)))
             
-            if (UserDefaults.standard.object(forKey: String(sender.tag ) + "h"  ) != nil ){
-            
-                 Model.sharedInstance.starsFor0 = UserDefaults.standard.object(forKey: String(sender.tag ) + "h"  ) as! Int
-                
-                self.imageView[i + 3 * sender.tag].image = UIImage(named:"star2.png")
+            if (UserDefaults.standard.object(forKey: String(sender.tag ) + "h"  ) == nil ){
+                self.imageView[i + 3 * sender.tag].image = UIImage(named:"star1.png")}
 
-                
-                
-            }else{
-            self.imageView[i + 3 * sender.tag].image = UIImage(named:"star1.png")}
-            
-                
-                
             self.view.addSubview(imageView[i + 3 * sender.tag]) }
-        }
+        
+    if (UserDefaults.standard.object(forKey: String(sender.tag ) + "h"  ) != nil ){
+    Model.sharedInstance.starsFor0 = UserDefaults.standard.object(forKey: String(sender.tag ) + "h"  ) as! Int
+    
+    if Model.sharedInstance.starsFor0 == 0{
+    self.imageView[0 + 3 * sender.tag].image = UIImage(named:"star2.png")
+    self.imageView[1 + 3 * sender.tag].image = UIImage(named:"star1.png")
+    self.imageView[2 + 3 * sender.tag].image = UIImage(named:"star1.png")}
+    
+    if Model.sharedInstance.starsFor0 == 1{
+    self.imageView[0 + 3 * sender.tag].image = UIImage(named:"star2.png")
+    self.imageView[1 + 3 * sender.tag].image = UIImage(named:"star2.png")
+    self.imageView[2 + 3 * sender.tag].image = UIImage(named:"star1.png")}
+    
+    if Model.sharedInstance.starsFor0 == 2{
+    self.imageView[0 + 3 * sender.tag].image = UIImage(named:"star2.png")
+    self.imageView[1 + 3 * sender.tag].image = UIImage(named:"star2.png")
+    self.imageView[2 + 3 * sender.tag].image = UIImage(named:"star2.png")}
+    
+    }
 
+    }
     }
 
