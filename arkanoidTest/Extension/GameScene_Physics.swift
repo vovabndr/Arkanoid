@@ -18,21 +18,17 @@ extension GameScene{
             bodyB?.physicsBody?.categoryBitMask == phyBodies.ballPhBodMask {
             bodyA?.removeFromParent()
             
+            if arc4random()%2==0{
+            createCapsule()
+            }
             check -= 1
             if check <= 0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.win()
                 }
             }
-            
-
         }
-        
-//        UserDefaults.standard.set(highScore, forKey: "highScore")
-//        UserDefaults.standard.value(forKey: "highScore")
-//        UserDefaults.standard.object(forKey: String)
-        
-
+    
         if bodyA?.physicsBody?.categoryBitMask == phyBodies.botBodyMask &&
             bodyB?.physicsBody?.categoryBitMask == phyBodies.ballPhBodMask {
             ballOff()
@@ -40,10 +36,10 @@ extension GameScene{
             if livesScore >= 0{
             lives()
             }
-            
             if livesScore == -1{
-                lose()
-                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.lose()
+                }
             }
         }
     }

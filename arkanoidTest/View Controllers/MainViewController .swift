@@ -30,5 +30,15 @@ class MainViewController: UIViewController{
         
     }
     
+    @IBAction func rulesButton(_ sender: UIButton) {
+        Sound.play(file:"button_press.wav")
+        
+        if let storyboard = storyboard{
+            let RulesViewController = storyboard.instantiateViewController(withIdentifier: "RulesViewController") as! RulesViewController
+            navigationController?.pushViewController(RulesViewController, animated: true)
+        }
+        
+    }
+    
 }
 

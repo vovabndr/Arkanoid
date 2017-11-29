@@ -30,6 +30,16 @@
                                     <action selector="startGAmeWithSender:" destination="x18-r2-hW2" eventType="touchUpInside" id="fa1-wE-UNv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZV-ge-nsC">
+                                <rect key="frame" x="121" y="489" width="133" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" backgroundImage="rules.png"/>
+                                <connections>
+                                    <action selector="rulesButton:" destination="x18-r2-hW2" eventType="touchUpInside" id="cVM-JF-dFf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="OS0-uR-Mc2"/>
@@ -38,7 +48,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOj-6I-hqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-297" y="124"/>
+            <point key="canvasLocation" x="-298.39999999999998" y="123.68815592203899"/>
+        </scene>
+        <!--Rules View Controller-->
+        <scene sceneID="iJT-2N-JtB">
+            <objects>
+                <viewController storyboardIdentifier="RulesViewController" id="PrG-to-JXB" customClass="RulesViewController" customModule="arkanoidTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f6N-FE-AA1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="sUd-aC-Kgb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2G-qK-THF">
+                                <rect key="frame" x="16" y="30" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="back.png"/>
+                                <connections>
+                                    <action selector="backButton:" destination="PrG-to-JXB" eventType="touchUpInside" id="8wu-DY-WRb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="QtF-gC-8ls"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bbu-AI-jmZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="114" y="862"/>
         </scene>
         <!--Level Menu View Controller-->
         <scene sceneID="xgH-RB-UCL">
@@ -220,7 +259,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jyz-h8-biV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1185" y="124"/>
+            <point key="canvasLocation" x="-1270" y="-16"/>
         </scene>
     </scenes>
     <resources>
@@ -231,5 +270,6 @@
         <image name="pause-button-orange-hi.png" width="600" height="600"/>
         <image name="playGameButton.png" width="198" height="58"/>
         <image name="reloadButton.png" width="75" height="75"/>
+        <image name="rules.png" width="600" height="183"/>
     </resources>
 </document>

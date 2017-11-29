@@ -19,6 +19,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var brickTexture = [Int:SKTexture]()
     var paddleTexture = SKTexture()
     var ballTexture = SKTexture()
+    var capsuleTexture = [SKTexture(imageNamed: "capsule1"),SKTexture(imageNamed: "capsule2"),
+                          SKTexture(imageNamed: "capsule3"),SKTexture(imageNamed: "capsule4")]
     //Sprite Nodes
     var brickNode: [SKSpriteNode] = [];
     var paddleNode = SKSpriteNode()
@@ -26,7 +28,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let bot = SKSpriteNode()
     let top = SKSpriteNode()
     var heart: [SKSpriteNode] = [];
-
+   var capsulses: [SKSpriteNode] = [];
+//    var capsule = SKSpriteNode()
+    
     //Physic
     var border = SKPhysicsBody()
     //Label
@@ -44,6 +48,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //var result: Any
     
     var selectedLevel: levelChoosing!
+    //Action
+    
+    var moveCapsule = SKAction()
+    
     
     
     override func didMove(to view: SKView) {
@@ -53,7 +61,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         UserDefaults.standard.set(true, forKey: "0")
     }
     
-    
+    override func update(_ currentTime: TimeInterval) {
+        checkCapsueTouch()
+    }
     
   
     func createObjects(){
@@ -64,7 +74,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         loseStatus = false
         livesScore = 2
         lives()
-        
         self.gameViewControllerBridge?.pauseButton.isHidden = false
         
     }
@@ -73,7 +82,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ballTexture = SKTexture(imageNamed: "ballBlue")
         ballNode = SKSpriteNode(texture: ballTexture)
         ballNode.position = CGPoint(x: self.size.width/2,y: 195)
-
         ballNode.size = CGSize(width: 50, height: 50)
         ballNode.color = .black
         addChild(ballNode)
@@ -101,6 +109,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         paddleNode.physicsBody?.angularDamping = 0.1
     }
     
+    func updatePaddlePhysicBody(){
+        paddleNode.physicsBody = nil
+        paddleNode.physicsBody = SKPhysicsBody(texture: paddleTexture,size:
+            CGSize(width: paddleNode.size.width,height: paddleNode.size.height))
+        
+        paddleNode.physicsBody?.isDynamic = false
+        paddleNode.physicsBody?.allowsRotation = false
+        paddleNode.physicsBody?.pinned = false
+        paddleNode.physicsBody?.affectedByGravity = false
+        paddleNode.physicsBody?.mass = 1.0
+        paddleNode.physicsBody?.friction = 0.0
+        paddleNode.physicsBody?.restitution = 0.0
+        paddleNode.physicsBody?.linearDamping = 0.1
+        paddleNode.physicsBody?.angularDamping = 0.1
+    }
    
 
     func lose(){
@@ -113,8 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(label)
         ballNode.physicsBody?.isDynamic = false
         ballNode.removeFromParent()
-        loseStatus = true 
-        
+        loseStatus = true
     }
     
     func win(){
@@ -151,12 +173,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-
-        //        UserDefaults.standard.set(highScore, forKey: "highScore")
-        //        UserDefaults.standard.value(forKey: "highScore")
-        //        UserDefaults.standard.object(forKey: String)
-  
-   
     
     func createBorder(){
 
@@ -196,12 +212,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         heart[i].removeFromParent()
         }
     }
+    
+    func reLive(){
+        livesScore = 2
+        heart.removeAll()
+        lives()
+    }
   
 
     func ballOn(){
-        ballNode.physicsBody = SKPhysicsBody(circleOfRadius: max(ballNode.size.width / 2,
-                                                                 ballNode.size.height / 2))
-        
+        ballNode.physicsBody = SKPhysicsBody(circleOfRadius: max(ballNode.size.width / 2,ballNode.size.height / 2))
         ballNode.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 50))
         ballNode.physicsBody?.isDynamic = true
         ballNode.physicsBody?.allowsRotation = false
@@ -223,8 +243,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         livesScore -= 1 
     }
     
+    func createCapsule(){
+        capsulses.append(SKSpriteNode(texture: capsuleTexture[Int(arc4random()%4)]))
+      //  capsulses.append(SKSpriteNode(texture: capsuleTexture[1]))
+
+        capsulses[capsulses.count-1].position = CGPoint(x: ballNode.frame.midX, y: ballNode.frame.midY)
+        capsulses[capsulses.count-1].size = CGSize(width: 40, height: 40)
+        moveCapsule = SKAction.moveTo(y: 20, duration: 10)
+        capsulses[capsulses.count-1].run(moveCapsule)
+        self.addChild(capsulses[capsulses.count-1])
+    }
+    
+    func checkCapsueTouch(){
+        for capsule in capsulses{
+            
+            if (capsule.frame.minX > paddleNode.frame.minX && capsule.frame.maxX < paddleNode.frame.maxX &&
+                capsule.frame.minY > paddleNode.frame.minY && capsule.frame.minY < paddleNode.frame.maxY){
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    self.usingCapsule(sender: capsule)
+                    capsule.removeFromParent()
+                    
+                }
+            }else if (capsule.frame.midY < 30){
+                capsule.removeFromParent()
+            }
+        }
+    }
+    
+    func usingCapsule(sender: SKSpriteNode){
+        switch sender.texture {
+        case capsuleTexture[0]?:
+            if paddleNode.frame.size.width > 100 {
+            paddleNode.size = CGSize(width: paddleNode.frame.size.width-10, height: paddleNode.frame.size.height)
+                updatePaddlePhysicBody()
+            }
+        case capsuleTexture[1]?:
+         ballNode.physicsBody?.velocity = CGVector(dx: (ballNode.physicsBody?.velocity.dx)! + 5,
+                                                      dy: (ballNode.physicsBody?.velocity.dy)! + 5)
+        case capsuleTexture[2]?:
+            if paddleNode.frame.size.width < 300 {
+            paddleNode.size = CGSize(width: paddleNode.frame.size.width+10, height: paddleNode.frame.size.height)
+                updatePaddlePhysicBody()
+            }
+        case capsuleTexture[3]?:
+            reLive()
+        default:
+            break
+        }
+    }
+    
     
     func reloadGame(){
+        capsulses.removeAll()
         self.gameViewControllerBridge?.menuButton.isHidden = true
         self.removeAllChildren()
         scene?.isPaused = false

@@ -160,6 +160,7 @@ extension GameScene{
                     width: brickNode[i].size.width,
                     height: brickNode[i].size.height))
                 
+                
                 brickNode[i].physicsBody?.isDynamic = false
                 brickNode[i].physicsBody?.allowsRotation = false
                 brickNode[i].physicsBody?.pinned = false

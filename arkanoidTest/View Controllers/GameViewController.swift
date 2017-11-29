@@ -33,6 +33,7 @@ class GameViewController: UIViewController {
         scene.scaleMode = .aspectFill
         scene.selectedLevel = levelGVC
         view.ignoresSiblingOrder = true
+     //   view.showsPhysics = true
         loadingView.isHidden = false
         
         let when = DispatchTime.now() + 1

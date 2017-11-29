@@ -13,6 +13,12 @@
 		3126495F1FCC9AD40008A097 /* star2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3126495E1FCC9AD40008A097 /* star2.png */; };
 		312649611FCCB28A0008A097 /* pause-button-orange-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = 312649601FCCB28A0008A097 /* pause-button-orange-hi.png */; };
 		312649631FCCB5070008A097 /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 312649621FCCB5070008A097 /* playButton.png */; };
+		312649671FCD6AB30008A097 /* rules.png in Resources */ = {isa = PBXBuildFile; fileRef = 312649661FCD6AB20008A097 /* rules.png */; };
+		312649691FCD6B730008A097 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312649681FCD6B730008A097 /* RulesViewController.swift */; };
+		312649711FCE40650008A097 /* capsule4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3126496D1FCE40640008A097 /* capsule4.png */; };
+		312649721FCE40650008A097 /* capsule3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3126496E1FCE40640008A097 /* capsule3.png */; };
+		312649731FCE40650008A097 /* capsule1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3126496F1FCE40640008A097 /* capsule1.png */; };
+		312649741FCE40650008A097 /* capsule2.png in Resources */ = {isa = PBXBuildFile; fileRef = 312649701FCE40640008A097 /* capsule2.png */; };
 		3157AEBB1FC32BC700E94DE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3157AEBA1FC32BC700E94DE2 /* AppDelegate.swift */; };
 		3157AEBD1FC32BC700E94DE2 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3157AEBC1FC32BC700E94DE2 /* GameScene.sks */; };
 		3157AEC11FC32BC700E94DE2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3157AEC01FC32BC700E94DE2 /* GameScene.swift */; };
@@ -50,6 +56,12 @@
 		3126495E1FCC9AD40008A097 /* star2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star2.png; sourceTree = "<group>"; };
 		312649601FCCB28A0008A097 /* pause-button-orange-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-button-orange-hi.png"; sourceTree = "<group>"; };
 		312649621FCCB5070008A097 /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
+		312649661FCD6AB20008A097 /* rules.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rules.png; sourceTree = "<group>"; };
+		312649681FCD6B730008A097 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		3126496D1FCE40640008A097 /* capsule4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = capsule4.png; sourceTree = "<group>"; };
+		3126496E1FCE40640008A097 /* capsule3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = capsule3.png; sourceTree = "<group>"; };
+		3126496F1FCE40640008A097 /* capsule1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = capsule1.png; sourceTree = "<group>"; };
+		312649701FCE40640008A097 /* capsule2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = capsule2.png; sourceTree = "<group>"; };
 		3157AEB71FC32BC700E94DE2 /* arkanoidTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arkanoidTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3157AEBA1FC32BC700E94DE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3157AEBC1FC32BC700E94DE2 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -100,6 +112,17 @@
 				3126495E1FCC9AD40008A097 /* star2.png */,
 			);
 			path = stars;
+			sourceTree = "<group>";
+		};
+		3126496A1FCD8D900008A097 /* capsule */ = {
+			isa = PBXGroup;
+			children = (
+				3126496F1FCE40640008A097 /* capsule1.png */,
+				312649701FCE40640008A097 /* capsule2.png */,
+				3126496E1FCE40640008A097 /* capsule3.png */,
+				3126496D1FCE40640008A097 /* capsule4.png */,
+			);
+			path = capsule;
 			sourceTree = "<group>";
 		};
 		3157AEAE1FC32BC700E94DE2 = {
@@ -166,6 +189,7 @@
 				312649551FCB0A570008A097 /* mainmenuButton.png */,
 				31FB3AF91FCAEA2D00FCA7DA /* back.png */,
 				312649621FCCB5070008A097 /* playButton.png */,
+				312649661FCD6AB20008A097 /* rules.png */,
 			);
 			path = "Button Pics";
 			sourceTree = "<group>";
@@ -186,6 +210,7 @@
 				31FB3ACC1FC9A8D600FCA7DA /* MainViewController .swift */,
 				3157AEC21FC32BC700E94DE2 /* GameViewController.swift */,
 				31FB3AE31FC9F17400FCA7DA /* LevelMenuViewController.swift */,
+				312649681FCD6B730008A097 /* RulesViewController.swift */,
 				31FB3ADD1FC9DC0100FCA7DA /* Model */,
 			);
 			path = "View Controllers";
@@ -226,6 +251,7 @@
 				31FB3AF11FCA2D1300FCA7DA /* ballBlue.png */,
 				31FB3AF21FCA2D1300FCA7DA /* paddleBlu.png */,
 				31FB3AF71FCA2D3200FCA7DA /* image.jpeg */,
+				3126496A1FCD8D900008A097 /* capsule */,
 				31FB3AE51FCA2CBA00FCA7DA /* Bricks */,
 			);
 			path = "Game Elements";
@@ -299,18 +325,23 @@
 				3157AEC61FC32BC700E94DE2 /* Main.storyboard in Resources */,
 				31FB3AEE1FCA2CE200FCA7DA /* rectGreen.png in Resources */,
 				31FB3AED1FCA2CE200FCA7DA /* rectRed.png in Resources */,
+				312649741FCE40650008A097 /* capsule2.png in Resources */,
 				31FB3AD81FC9C3D100FCA7DA /* reloadButton.png in Resources */,
+				312649721FCE40650008A097 /* capsule3.png in Resources */,
 				31FB3AEB1FCA2CE200FCA7DA /* rectYellow.png in Resources */,
 				312649561FCB0A570008A097 /* mainmenuButton.png in Resources */,
 				312649611FCCB28A0008A097 /* pause-button-orange-hi.png in Resources */,
 				3157AEBD1FC32BC700E94DE2 /* GameScene.sks in Resources */,
+				312649711FCE40650008A097 /* capsule4.png in Resources */,
 				3126495D1FCC9ABA0008A097 /* star1.png in Resources */,
+				312649671FCD6AB30008A097 /* rules.png in Resources */,
 				31FB3AF31FCA2D1300FCA7DA /* ballBlue.png in Resources */,
 				31FB3AEF1FCA2CE200FCA7DA /* rectPurp.png in Resources */,
 				31FB3AD71FC9C3D100FCA7DA /* playGameButton.png in Resources */,
 				31FB3AF81FCA2D3500FCA7DA /* image.jpeg in Resources */,
 				3157AEC81FC32BC700E94DE2 /* Assets.xcassets in Resources */,
 				31FB3AF41FCA2D1300FCA7DA /* paddleBlu.png in Resources */,
+				312649731FCE40650008A097 /* capsule1.png in Resources */,
 				3157AECB1FC32BC700E94DE2 /* LaunchScreen.storyboard in Resources */,
 				31FB3AEC1FCA2CE200FCA7DA /* rectBlue.png in Resources */,
 			);
@@ -333,6 +364,7 @@
 				31FB3AE41FC9F17400FCA7DA /* LevelMenuViewController.swift in Sources */,
 				3157AEC11FC32BC700E94DE2 /* GameScene.swift in Sources */,
 				3157AEC31FC32BC700E94DE2 /* GameViewController.swift in Sources */,
+				312649691FCD6B730008A097 /* RulesViewController.swift in Sources */,
 				3157AEBB1FC32BC700E94DE2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
